@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Human Edit Pros — Podcast Editing for Founders</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark:  #0f3460;
+      --blue-mid:   #1a6bc1;
+      --blue-light: #e8f2fc;
+      --accent:     #2f80ed;
+      --text-dark:  #1a1f2e;
+      --text-mid:   #4a5568;
+      --text-light: #718096;
+      --white:      #ffffff;
+      --border:     #d6e4f5;
+      --radius:     8px;
+      --shadow:     0 2px 16px rgba(15,52,96,.09);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      background: var(--blue-dark);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -.3px;
+    }
+
+    .nav-logo span { color: #7ec8f7; }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+
+    .nav-links a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #1a4a8a 60%, var(--blue-mid) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 96px 24px 80px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 100px;
+      padding: 6px 20px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.18;
+      max-width: 760px;
+      margin: 0 auto 24px;
+      letter-spacing: -.5px;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      opacity: .9;
+      line-height: 1.55;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 38px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.24);
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────── */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 16px;
+      letter-spacing: -.3px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-mid);
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
+
+    /* ── SERVICES ────────────────────────────────────────── */
+    #services { background: var(--blue-light); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(15,52,96,.13);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--blue-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: .92rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    /* ── PRICING ─────────────────────────────────────────── */
+    #pricing { background: var(--white); text-align: center; }
+
+    .pricing-card {
+      background: var(--blue-dark);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 56px 48px;
+      max-width: 540px;
+      margin: 0 auto;
+      box-shadow: 0 8px 40px rgba(15,52,96,.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.04) 0%, transparent 60%);
+    }
+
+    .pricing-tag {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border-radius: 100px;
+      padding: 5px 18px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .pricing-amount {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .pricing-period {
+      font-size: .95rem;
+      opacity: .75;
+      margin-bottom: 36px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .95rem;
+      opacity: .9;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: #7ec8f7;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing-cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 44px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+      width: 100%;
+    }
+
+    .pricing-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about { background: var(--blue-light); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-content p {
+      color: var(--text-mid);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .about-content p:last-child { margin-bottom: 0; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--blue-dark);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: .82rem;
+      color: var(--text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 14px;
+    }
+
+    .contact-info p {
+      color: var(--text-mid);
+      margin-bottom: 32px;
+      font-size: .97rem;
+      line-height: 1.65;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--text-mid);
+      font-size: .95rem;
+    }
+
+    .contact-detail-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    form { display: flex; flex-direction: column; gap: 18px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .95rem;
+      color: var(--text-dark);
+      font-family: inherit;
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(47,128,237,.12);
+    }
+
+    textarea { resize: vertical; min-height: 140px; }
+
+    button[type="submit"] {
+      background: var(--blue-dark);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      padding: 15px 36px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 36px 24px;
+    }
+
+    .footer-logo {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    footer p {
+      font-size: .82rem;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0 auto 8px;
+    }
+
+    .footer-disclaimer {
+      font-size: .75rem;
+      opacity: .6;
+      margin-top: 14px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 60px 20px; }
+
+      .nav-links { display: none; }
+
+      .about-inner,
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .about-stats { order: -1; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .pricing-card { padding: 40px 28px; }
+
+      .pricing-amount { font-size: 3rem; }
+
+      button[type="submit"] { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Human Edit <span>Pros</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">Podcast Production for Founders</div>
+      <h1>Turn Your Founder Podcast Into a Lead Generation Machine</h1>
+      <p>Professional editing, show notes, and 48-hour turnaround. $1,600/month for up to 4 episodes.</p>
+      <a href="#contact" class="hero-cta">Get Started Today</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Everything Your Podcast Needs</h2>
+      <p class="section-subtitle">We handle the production so you can focus on recording great conversations and growing your business.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎙️</div>
+          <h3>Professional Audio Editing</h3>
+          <p>Crisp, broadcast-quality audio on every episode. We remove filler words, background noise, and awkward pauses so your content sounds polished and professional.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📝</div>
+          <h3>Show Notes</h3>
+          <p>SEO-optimized show notes that summarize key insights, guest bios, timestamps, and links — making your episodes easier to find and easier for listeners to reference.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>48-Hour Turnaround</h3>
+          <p>Record today, publish in two days. Our dedicated team works fast so you can maintain a consistent publishing schedule without delays or bottlenecks.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📆</div>
+          <h3>Monthly Retainer</h3>
+          <p>One flat monthly rate covers up to 4 episodes. No per-episode fees, no surprise charges — just predictable pricing and a reliable production partner.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-subtitle" style="margin: 0 auto 48px;">One plan. Everything included. No contracts, no surprises.</p>
+      <div class="pricing-card">
+        <div class="pricing-tag">Monthly Retainer</div>
+        <div class="pricing-amount">$1,600</div>
+        <div class="pricing-period">per month · up to 4 episodes</div>
+        <ul class="pricing-features">
+          <li>Professional audio editing for up to 4 episodes</li>
+          <li>SEO-optimized show notes for each episode</li>
+          <li>Guaranteed 48-hour turnaround per episode</li>
+          <li>Filler word and background noise removal</li>
+          <li>Timestamps and chapter markers</li>
+          <li>Dedicated account manager</li>
+          <li>Unlimited revision requests</li>
+        </ul>
+        <a href="#contact" class="pricing-cta">Start Your Retainer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-content">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Built for Founders Who Value Their Time</h2>
+          <p>Human Edit Pros was founded by podcast producers and content strategists who saw too many busy founders struggle with inconsistent publishing and amateur-sounding audio. We built a streamlined production service designed specifically for founder-led podcasts where credibility matters.</p>
+          <p>Our team of professional editors and writers understands what your audience expects — and what converts a casual listener into a qualified lead. We treat your podcast like the business asset it is, not just a creative project.</p>
+          <p>Every episode is handled by a real human editor — no AI shortcuts, no templates, no cutting corners. That's the Human Edit Pros promise.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-number">48h</div>
+            <div class="stat-label">Turnaround</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Episodes/Month</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Human Edited</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Revisions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-label">Get In Touch</span>
+          <h3>Ready to Grow Your Podcast?</h3>
+          <p>Send us a message and we'll get back to you within one business day. Tell us about your show and we'll let you know if we're a great fit.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📧</div>
+            <span>hello@humaneditpros.com</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">⏰</div>
+            <span>Responses within 1 business day</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🔒</div>
+            <span>Your information is never shared</span>
+          </div>
+        </div>
+        <form>
+          <div class="form-row">
+            <div>
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+            </div>
+          </div>
+          <div>
+            <label for="podcast">Podcast Name (optional)</label>
+            <input type="text" id="podcast" name="podcast" placeholder="The Founder Files" />
+          </div>
+          <div>
+            <label for="message">Tell us about your show</label>
+            <textarea id="message" name="message" placeholder="How many episodes do you publish per month? What's your show about?" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Human Edit Pros</div>
+    <p>&copy; 2025 Human Edit Pros. All rights reserved.</p>
+    <p class="footer-disclaimer">
+      <strong>Disclaimer:</strong> Results vary based on podcast niche, audience, and content quality. Human Edit Pros provides professional audio editing and show note production services only. We do not guarantee specific lead generation outcomes, audience growth, or revenue results. All pricing is subject to change with notice to existing clients.
+    </p>
+  </footer>
+
+</body>
+</html>
