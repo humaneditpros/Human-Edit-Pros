@@ -869,11 +869,11 @@
           HUMAN EDIT PROS
         </div>
         <ul class="nav-links">
-          <li><button onclick="scrollTo('services')">Services</button></li>
-          <li><button onclick="scrollTo('pricing')">Pricing</button></li>
-          <li><button onclick="scrollTo('about')">About</button></li>
+          <li><button onclick="scrollToSection('services')">Services</button></li>
+          <li><button onclick="scrollToSection('pricing')">Pricing</button></li>
+          <li><button onclick="scrollToSection('about')">About</button></li>
         </ul>
-        <button class="nav-cta" onclick="scrollTo('contact')">Get Started</button>
+        <button class="nav-cta" onclick="scrollToSection('contact')">Get Started</button>
       </div>
     </div>
   </nav>
@@ -896,7 +896,7 @@
           <strong>$1,600/month</strong> for up to 4 episodes.
         </p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="scrollTo('contact')">
+          <button class="btn-primary" onclick="scrollToSection('contact')">
             Start Your Retainer
             <!-- Arrow right icon -->
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1004,7 +1004,7 @@
               <li><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>48-hour turnaround guarantee</li>
               <li><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>100% human editing (no AI cuts)</li>
             </ul>
-            <button class="btn-pricing" onclick="scrollTo('contact')">
+            <button class="btn-pricing" onclick="scrollToSection('contact')">
               Secure Your Spot
               <!-- Arrow up-right icon -->
               <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -1108,7 +1108,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     /* ── SMOOTH SCROLL ────────────────────────────── */
-    function scrollTo(id) {
+    function scrollToSection(id) {
       const el = document.getElementById(id);
       if (!el) return;
       const navH = document.getElementById('nav').offsetHeight;
