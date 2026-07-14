@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Human Edit Pros"
+version = "1.0.0"
+id = "artifacts/human-edit-pros"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24009
+
+[services.development]
+run = "pnpm --filter @workspace/human-edit-pros run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/human-edit-pros", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/human-edit-pros/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24009"
+BASE_PATH = "/"
